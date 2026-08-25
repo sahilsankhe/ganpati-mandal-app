@@ -2,7 +2,6 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 
 if not firebase_admin._apps:
-    # Key मधील newline चा गोंधळ पूर्णपणे बायपास करण्यासाठी डायरेक्ट multi-line string
     private_key_pem = """-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDJiGUeITyRNw+Q
 9iHTM2uO1E1ym+O8kU2C2LKuuOjWqK+ZwfONgFo7OWd5lqV1sSgwnM/bw31SXi4f
@@ -47,4 +46,5 @@ P04fbVsPDx7S1k58zxGkPyU=
     })
     firebase_admin.initialize_app(cred)
 
-db = firestore.client()
+# Database ID स्पष्टपणे दिल्याने %28default%29 चा URL encoding इश्यू होणार नाही
+db = firestore.client(database_id="(default)")
